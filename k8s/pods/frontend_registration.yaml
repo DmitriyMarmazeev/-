@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend-registration
+  labels:
+    app: frontend-registration
+spec:
+  containers:
+    - name: frontend
+      image: marmazeevdmitriy/frontend:latest
+      ports:
+        - containerPort: 3001
+    - name: registration
+      image: marmazeevdmitriy/registration:latest
+      ports:
+        - containerPort: 3000

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: adminer
+  labels:
+    app: adminer
+spec:
+  containers:
+    - name: adminer
+      image: adminer
+      ports:
+        - containerPort: 8080

@@ -1,0 +1,340 @@
+/* Общие стили */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  background-color: #333;
+  color: white;
+}
+
+/* Стили для секции авторизации в шапке */
+#authSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Форма входа */
+.login-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Элементы будут выровнены по центру по высоте */
+  width: 100%; /* Форма занимает всю ширину */
+  padding: 4px; /* Уменьшаем отступы */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Группа с полями ввода */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Отступы между полями */
+  width: 100%; /* Поля для ввода занимают 70% ширины */
+  margin-right: 20px;
+}
+
+.input-group input {
+  padding: 4px; /* Уменьшаем паддинги */
+  font-size: 1em;
+  margin: 0; /* Убираем внешние отступы */
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  height: 20px; /* Поля ввода и кнопки имеют одинаковую высоту */
+}
+
+/* Группа с кнопками */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Отступы между кнопками */
+  width: 150px; /* Кнопки занимают 30% ширины */
+  padding-left: 4px; /* Отступ от полей ввода */
+}
+
+.button-group button {
+  padding: 4px; /* Уменьшаем паддинги */
+  font-size: 1.1em;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 28px; /* Кнопки и поля имеют одинаковую высоту */
+  transition: background-color 0.3s;
+}
+
+.button-group button:hover {
+  background-color: #388e3c;
+}
+
+.button-group button[type="button"] {
+  background-color: #f44336;
+}
+
+.button-group button[type="button"]:hover {
+  background-color: #d32f2f;
+}
+
+/* Стили для отображения после входа */
+.email-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Занимает всю ширину */
+  padding: 4px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.email-display {
+  font-size: 1.3em; /* Увеличиваем размер текста */
+  font-weight: bold; /* Жирный шрифт */
+  font-style: italic; /* Курсив */
+  color: #333;
+  margin-right: 10px;
+  width: 100%; /* Почта будет занимать всю ширину до кнопок */
+}
+
+.control-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.control-buttons button {
+  padding: 4px; /* Уменьшаем паддинги */
+  font-size: 1.1em;
+  height: 45px; /* Кнопки имеют одинаковую высоту */
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.control-buttons button#logoutButton {
+  background-color: #b0bec5; /* Серая кнопка для выхода */
+}
+
+.control-buttons button#logoutButton:hover {
+  background-color: #90a4ae;
+}
+
+.control-buttons button#deleteAccountButton {
+  background-color: #f44336; /* Красная кнопка для удаления */
+}
+
+.control-buttons button#deleteAccountButton:hover {
+  background-color: #d32f2f;
+}
+
+/* Адаптивность для планшетов и мобильных устройств */
+@media (max-width: 768px) {
+  /* Форма входа на мобильных устройствах */
+  .login-form {
+    flex-direction: column;
+    padding: 4px;
+  }
+
+  .button-group {
+    margin-top: 15px;
+    margin-left: 0;
+  }
+
+  .input-group,
+  .button-group {
+    width: 100%;
+  }
+
+  .input-group input {
+    width: 100%;
+  }
+
+  .button-group button {
+    width: 100%;
+    font-size: 1.2em;
+  }
+
+  .email-controls {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .email-display {
+    margin-bottom: 15px; /* Увеличиваем отступ между почтой и кнопками */
+    text-align: center; /* Центрируем почту на мобильных */
+  }
+
+  .control-buttons {
+    flex-direction: column;
+    width: 100%; /* Кнопки растягиваются на всю ширину */
+    gap: 5px; /* Уменьшаем отступы между кнопками */
+  }
+
+  .control-buttons button {
+    width: 100%; /* Кнопки будут занимать всю ширину */
+    font-size: 1.2em;
+    margin-bottom: 5px; /* Уменьшаем отступы между кнопками */
+  }
+}
+
+/* Скрытие секций по умолчанию */
+#writeEmailSection, #sentEmails, #receivedEmails {
+  display: none;
+}
+
+/* Стиль для навигационных кнопок */
+.navigation-buttons {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+h1, h2 {
+  color: #333;
+}
+
+.navigation-buttons button {
+  padding: 10px 15px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.navigation-buttons button:hover {
+  background-color: #45a049;
+}
+
+/* Контейнеры для разделов */
+#writeEmailSection, #sentEmails, #receivedEmails {
+  display: none;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 800px;
+}
+
+/* Формы для написания письма */
+#writeEmailSection input, #writeEmailSection textarea, #writeEmailSection button {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#writeEmailSection input[type="email"] {
+  font-size: 14px;
+}
+
+#writeEmailSection textarea {
+  font-size: 14px;
+  height: 200px;
+  resize: none; /* Запрещаем изменение размера */
+  line-height: 1.5;
+}
+
+/* Стили для списка писем */
+.email-list {
+  margin-top: 20px;
+}
+
+.email {
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.email strong {
+  color: #333;
+  font-weight: bold;
+}
+
+.email p {
+  margin: 10px 0;
+}
+
+.email-attachments {
+  margin-top: 10px;
+}
+
+.email-attachments a {
+  display: block;
+  color: #1e90ff;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+.email-attachments a:hover {
+  text-decoration: underline;
+}
+
+button.delete-email {
+  margin-top: 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button.delete-email:hover {
+  background-color: #d32f2f;
+}
+
+/* Кнопка выхода и удаления аккаунта */
+.email-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.email-controls .control-buttons button {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.email-controls .control-buttons button:hover {
+  background-color: #d32f2f;
+}
+
+@media (max-width: 768px) {
+  .navigation-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navigation-buttons button {
+    width: 100%;
+  }
+}

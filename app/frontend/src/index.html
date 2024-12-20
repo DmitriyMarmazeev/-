@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Client</title>
+</head>
+<body>
+  <div id="authSection"></div>
+
+  <!-- Кнопки для переключения между разделами -->
+  <div class="navigation-buttons">
+    <button id="receivedEmailsButton">Входящие</button>
+    <button id="sentEmailsButton">Отправленные</button>
+    <button id="writeEmailButton">Написать</button>
+  </div>
+
+  <div id="writeEmailSection">
+    <h2>Написать и отправить письмо</h2>
+    <input type="email" id="emailSender" placeholder="Enter sender email" required readonly>
+    <input type="email" id="emailReceiver" placeholder="Почта получателя" required>
+    <input type="text" id="emailTitle" placeholder="Тема письма" required>
+    <textarea id="emailText" placeholder="Пишите письмо здесь"></textarea>
+    <input type="file" id="emailAttachment" multiple>
+    <button id="sendEmail">Отправить</button>
+  </div>
+
+  <div id="sentEmails" class="email-list">
+    <h2>Отправленные</h2>
+  </div>
+
+  <div id="receivedEmails" class="email-list">
+    <h2>Входящие</h2>
+  </div>
+
+  <!-- Скрипт и стили подключаются автоматически через Webpack -->
+</body>
+</html>

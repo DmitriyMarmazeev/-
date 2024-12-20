@@ -1,0 +1,100 @@
+services:
+  backend:
+    build: ./app/backend
+    container_name: backend
+    restart: always
+    ports:
+      - "8000:8000"
+    networks:
+      - corpmail-network
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: corpmail
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      STORAGE_HOST: storage
+      STORAGE_PORT: 9000
+      STORAGE_ACCESS_KEY: minioadmin
+      STORAGE_SECRET_KEY: minioadmin
+    depends_on:
+      postgres:
+        condition: service_healthy
+      storage:
+        condition: service_healthy
+
+  registration:
+    build: ./app/registration
+    container_name: registration
+    ports:
+      - "3000:3000"
+    networks:
+      - corpmail-network
+    depends_on:
+      - backend
+
+  frontend:
+    build: ./app/frontend
+    container_name: frontend
+    ports:
+      - "3001:3001"
+    networks:
+      - corpmail-network
+    depends_on:
+      - backend
+    
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: corpmail
+    volumes:
+      - ./app/db/postgres_data:/var/lib/postgresql/data
+    networks:
+      - corpmail-network
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  storage:
+    image: minio/minio
+    container_name: storage
+    restart: always
+    command: server /data
+    ports:
+      - "9000:9000"
+    environment:
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+    volumes:
+      - ./app/storage/storage_data:/data
+    networks:
+      - corpmail-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - corpmail-network
+    depends_on:
+      - postgres
+
+
+networks:
+  corpmail-network:
+    driver: bridge

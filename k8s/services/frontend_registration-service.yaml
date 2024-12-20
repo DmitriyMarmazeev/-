@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-registration-service
+spec:
+  selector:
+    app: frontend-registration
+  ports:
+    - name: frontend-port
+      protocol: TCP
+      port: 3001
+      targetPort: 3001
+    - name: registration-port
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: ClusterIP
